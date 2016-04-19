@@ -1,0 +1,36 @@
+<md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">List Penilaian</h1>
+</md-toolbar>
+<br />
+<md-content layout-padding class="md-no-momentum">
+<md-table-container>
+	<md-input-container class="md-block" md-no-float> 
+			<input type="search" ng-model="search" ng-change="searchField()" placeholder="Search" />
+		</md-input-container>
+		<table md-table md-row-select border="1" ng-model="penilaian" md-progress="promise">
+		<thead md-head md-order="query.order" md-on-reorder="onReorder">
+			<tr md-row>
+				<th md-coloumn>Kelas</th>
+				<th md-coloumn>Nama Siswa</th>
+				<th md-coloumn>Semester</th>
+				<th md-coloumn>Rapor</th>
+			</tr>
+		</thead>
+		<tbody md-body>
+			<tr md-row ng-repeat="item in itemsDetailSiswa">
+				<td md-coloumn align="center">{{item.kelas.tingkat.tingkat}}{{item.kelas.grupKelas.grupKelas}}</td>
+				<td md-coloumn align="center">{{item.siswa.namaSiswa}}</td>
+				<td md-coloumn align="center">2</td>
+				<td md-coloumn align="center">
+					<a href="/#/rapor/list/{{item.kelas.id}}/siswa/{{item.siswa.id}}" class="md-button md-raised md-primary">Lihat</a>
+		 		</td>
+	</table>
+</md-table-container>
+
+	<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{query.total}}" md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+	<div layout="row" layout-wrap layout-margin layout-align="end end">
+		<a href="/#/penilaian/list/kelas/{{idKelas}}/input-nilai" md-button class="md-fab md-primary md-raised center">
+      		<ng-md-icon icon="add" style="fill: #abcdef" size="25"></ng-md-icon>
+    	</a>
+    </div>
+	</md-content>
